@@ -4,10 +4,10 @@ Welcome to extremely easy installation of Mycroft-Core & Home Assistant Core. Fi
 ## Let`s go
 Ok! now you need to run this command:
 ```
-bash installer.sh
+sudo bash installer.sh
 ```
 
 If you ran this command before, use another one to run it whenever you need:
 ```
-bash runner.sh
+sudo bash runner.sh
 ```
