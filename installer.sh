@@ -84,4 +84,4 @@ mkdir configs/www
 mkdir media
 
 echo "Running Home Assistant Assistant on: http://localhost:8123 or http://homeassistant:8123/"
-hass
+hass -c configuration.yaml
