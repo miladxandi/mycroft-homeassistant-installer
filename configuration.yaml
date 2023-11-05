@@ -1,0 +1,23 @@
+homeassistant:
+  name: Home
+#  external_url: "http://your-homeassistant-url.com"
+  internal_url: "http://homeassistant:8123"
+  allowlist_external_dirs:
+    - "config/www"
+    - "mycroft-core"
+    - "home_assistant"
+  media_dirs:
+    media: "media"
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+sensor: !include sensors.yaml
+
+# Desire pluginsه
+mycroft:
+  host: 0.0.0.0
+
+notify:
+  - platform: mycroft
+    name: mycroft
