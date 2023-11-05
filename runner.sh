@@ -20,4 +20,4 @@ pyenv global 3.11.0
 source home_assistant/bin/activate
 
 echo "Running Home Assistant Assistant on: http://localhost:8123 or http://homeassistant:8123/"
-hass -c configuration.yaml
+hass
