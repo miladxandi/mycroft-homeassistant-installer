@@ -76,8 +76,12 @@ pip install mutagen
 
 pip install homeassistant==2023.11.0
 
-mkdir configs/www
-mkdir media
+if [ ! -d "configs/www" ]; then
+  mkdir configs/www
+fi
+if [ ! -d "media" ]; then
+  mkdir media
+fi
 
 echo "Running Home Assistant Assistant on: http://localhost:8123 or http://homeassistant:8123/"
 hass
