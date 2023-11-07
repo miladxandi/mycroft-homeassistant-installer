@@ -41,7 +41,7 @@ if [ ! -d "mycroft-core" ]; then
 
     # Cloning MyCroft-Core form github
     sudo git clone https://github.com/MycroftAI/mycroft-core.git
-    cd mycroft-core/ || exit
+    cd /opt/mycroft-core/ || exit
 
     sudo chmod -R 777 /opt/
     sudo chmod -R 777 /mycroft-core/
@@ -64,7 +64,7 @@ if [ ! -d "mycroft-core" ]; then
     echo "Mycroft-Core Has been installed & now is running!"
 else
     echo "Mycroft-Core folder is exist, so Mycroft-Core installation skipped!"
-    cd mycroft-core/ || exit
+    cd /opt/mycroft-core/ || exit
 
     # Running its virtual env
     echo "Changing virtual env..."
