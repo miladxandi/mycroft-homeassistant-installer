@@ -44,6 +44,7 @@ if [ ! -d "mycroft-core" ]; then
     cd mycroft-core/ || exit
 
     sudo chmod -R 777 /opt/
+    sudo chmod -R 777 /mycroft-core/
     sudo chmod -R /var/log/mycroft/
     sudo touch /var/mycroft/setup.log
     sudo chmod -R /var/log/mycroft/setup.log
@@ -70,7 +71,7 @@ fi
 
 
 # Back to the previous directory
-cd ..
+cd /opt/ || exit
 
 # Changing Python version
 pyenv global 3.11.0
@@ -86,9 +87,11 @@ pip install homeassistant==2023.11.0
 
 if [ ! -d "configs/www" ]; then
   mkdir configs/www
+  sudo chmod -R 777 configs/www
 fi
 if [ ! -d "media" ]; then
   mkdir media
+  sudo chmod -R 777 media
 fi
 
 echo "Running Home Assistant Assistant on: http://localhost:8123 or http://homeassistant:8123/"
