@@ -37,8 +37,8 @@ pip --version
 if [ ! -d "mycroft-core" ]; then
 
     # Cloning MyCroft-Core form github
-    git clone https://github.com/MycroftAI/mycroft-core.git
-    cd mycroft-core/
+    sudo git clone https://github.com/MycroftAI/mycroft-core.git
+    cd mycroft-core/ || exit
 
     sudo chmod -R 777 /opt/
     sudo chmod -R /var/log/mycroft/
@@ -59,7 +59,7 @@ if [ ! -d "mycroft-core" ]; then
     echo "Mycroft-Core Has been installed & now is running!"
 else
     echo "Mycroft-Core folder is exist, so Mycroft-Core installation skipped!"
-    cd mycroft-core/
+    cd mycroft-core/ || exit
     echo "Running Mycroft-Core..."
     ./start-mycroft.sh all restart
     echo "Mycroft-Core is running now!!"
