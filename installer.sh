@@ -49,14 +49,15 @@ if [ ! -d "mycroft-core" ]; then
     sudo touch /var/mycroft/setup.log
     sudo chmod -R /var/log/mycroft/setup.log
 
-    # Running its virtual env
-    echo "Changing virtual env..."
-    . venv-activate.sh
     echo "Has changed"
     python --version
 
     # Running installation scripts
     sudo ./dev_setup.sh --allow-root
+
+    # Running its virtual env
+    echo "Changing virtual env..."
+    . venv-activate.sh
 
     echo "Running Mycroft-Core..."
     ./start-mycroft.sh all
@@ -64,11 +65,16 @@ if [ ! -d "mycroft-core" ]; then
 else
     echo "Mycroft-Core folder is exist, so Mycroft-Core installation skipped!"
     cd mycroft-core/ || exit
+
+    # Running its virtual env
+    echo "Changing virtual env..."
+    . venv-activate.sh
+
     echo "Running Mycroft-Core..."
     ./start-mycroft.sh all restart
     echo "Mycroft-Core is running now!!"
 fi
-
+mycroft-venv-deactivate
 
 # Back to the previous directory
 cd /opt/ || exit
