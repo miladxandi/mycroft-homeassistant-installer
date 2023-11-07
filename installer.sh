@@ -34,6 +34,9 @@ pip install requests
 python --version
 pip --version
 
+# Go to the opt directory
+cd /opt/ || exit
+
 if [ ! -d "mycroft-core" ]; then
 
     # Cloning MyCroft-Core form github
