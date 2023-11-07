@@ -74,7 +74,7 @@ else
     ./start-mycroft.sh all restart
     echo "Mycroft-Core is running now!!"
 fi
-mycroft-venv-deactivate
+deactivate
 
 # Back to the previous directory
 cd /opt/ || exit
@@ -92,7 +92,9 @@ pip install mutagen
 pip install homeassistant==2023.11.0
 
 if [ ! -d "configs/www" ]; then
+  mkdir /opt/configs/
   mkdir /opt/configs/www
+  sudo chmod -R 777 /opt/configs
   sudo chmod -R 777 /opt/configs/www
 fi
 if [ ! -d "media" ]; then
