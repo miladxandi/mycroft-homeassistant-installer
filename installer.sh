@@ -55,8 +55,8 @@ if [ ! -d "mycroft-core" ]; then
     echo "Has changed"
     python --version
 
-    # Running installation script
-    ./dev_setup.sh
+    # Running installation scripts
+    sudo ./dev_setup.sh --allow-root
 
     echo "Running Mycroft-Core..."
     ./start-mycroft.sh all
@@ -86,12 +86,12 @@ pip install mutagen
 pip install homeassistant==2023.11.0
 
 if [ ! -d "configs/www" ]; then
-  mkdir configs/www
-  sudo chmod -R 777 configs/www
+  mkdir /opt/configs/www
+  sudo chmod -R 777 /opt/configs/www
 fi
 if [ ! -d "media" ]; then
-  mkdir media
-  sudo chmod -R 777 media
+  mkdir /opt/media
+  sudo chmod -R 777 /opt/media
 fi
 
 echo "Running Home Assistant Assistant on: http://localhost:8123 or http://homeassistant:8123/"
