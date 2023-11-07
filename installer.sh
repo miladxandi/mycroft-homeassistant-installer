@@ -40,6 +40,11 @@ if [ ! -d "mycroft-core" ]; then
     git clone https://github.com/MycroftAI/mycroft-core.git
     cd mycroft-core/
 
+    sudo chmod -R 777 /opt/
+    sudo chmod -R /var/log/mycroft/
+    sudo touch /var/mycroft/setup.log
+    sudo chmod -R /var/log/mycroft/setup.log
+
     # Running its virtual env
     echo "Changing virtual env..."
     . venv-activate.sh
