@@ -45,9 +45,17 @@ if [ ! -d "mycroft-core" ]; then
 
     sudo chmod -R 777 /opt/
     sudo chmod -R 777 /mycroft-core/
-    sudo chmod -R /var/log/mycroft/
+    sudo chmod -R 777 /var/log/mycroft/
     sudo touch /var/mycroft/setup.log
-    sudo chmod -R /var/log/mycroft/setup.log
+    sudo touch /var/mycroft/bus.log
+    sudo touch /var/mycroft/audio.log
+    sudo touch /var/mycroft/skill.log
+    sudo touch /var/mycroft/voice.log
+    sudo chmod -R 777 /var/log/mycroft/setup.log
+    sudo chmod -R 777 /var/log/mycroft/bus.log
+    sudo chmod -R 777 /var/log/mycroft/audio.log
+    sudo chmod -R 777 /var/log/mycroft/skill.log
+    sudo chmod -R 777 /var/log/mycroft/voice.log
 
     echo "Has changed"
     python --version
