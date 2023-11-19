@@ -41,8 +41,12 @@ cd /srv/ || exit
 if [ ! -d "dobo" ]; then
 
     if ! id "dobo" &>/dev/null; then
-      sudo useradd -rm dobo
+      pass="1234"
+      encrypted_password=$(echo -n "$pass" | openssl passwd -stdin -6)
+      sudo useradd -rm -p "$encrypted_password" dobo
+      echo -e "We created a new user:\nUsername:dobo\nPassword:1234"
       sudo -u dobo -H -s
+      echo -e "Now the current user is dobo!"
     fi
 
     sudo mkdir /srv/dobo
