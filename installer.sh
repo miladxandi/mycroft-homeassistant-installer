@@ -45,9 +45,11 @@ if [ ! -d "dobo" ]; then
       encrypted_password=$(echo -n "$pass" | openssl passwd -stdin -6)
       sudo useradd -rm -p "$encrypted_password" dobo
       echo -e "We created a new user:\nUsername:dobo\nPassword:1234"
-      sudo -u dobo -H -s
-      echo -e "Now the current user is dobo!"
+
     fi
+
+    sudo -u dobo -H -s
+    echo -e "Now the current user is dobo!"
 
     cd /srv/ || exit
 
