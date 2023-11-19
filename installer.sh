@@ -40,9 +40,11 @@ cd /srv/ || exit
 
 if [ ! -d "dobo" ]; then
 
-    sudo useradd -rm dobo
-    sudo passwd dobo
-    sudo -u dobo -H -s
+    if ! id "dobo" &>/dev/null; then
+      sudo useradd -rm dobo
+      sudo -u dobo -H -s
+    fi
+
     sudo mkdir /srv/dobo
     cd /srv/dobo || exit
     sudo chown dobo:dobo /srv/dobo
