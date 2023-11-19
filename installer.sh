@@ -41,6 +41,7 @@ cd /srv/ || exit
 if [ ! -d "dobo" ]; then
 
     sudo useradd -rm dobo
+    sudo passwd dobo
     sudo -u dobo -H -s
     sudo mkdir /srv/dobo
     cd /srv/dobo || exit
