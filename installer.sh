@@ -34,58 +34,74 @@ pip install requests
 python --version
 pip --version
 
-# Go to the opt directory
-cd /opt/ || exit
+# Go to the srv directory
+cd /srv/ || exit
 
-if [ ! -d "mycroft-core" ]; then
+
+if [ ! -d "dobo" ]; then
+
+    sudo useradd -rm dobo
+    sudo -u dobo -H -s
+    sudo mkdir /srv/dobo
+    cd /srv/dobo || exit
+    sudo chown dobo:dobo /srv/dobo
 
     # Cloning MyCroft-Core form github
-    sudo git clone https://github.com/MycroftAI/mycroft-core.git
-    cd /opt/mycroft-core/ || exit
-
-    sudo chmod -R 777 /opt/
-    sudo chmod -R 777 /mycroft-core/
-    sudo chmod -R 777 /var/log/mycroft/
-    sudo touch /var/mycroft/setup.log
-    sudo touch /var/mycroft/bus.log
-    sudo touch /var/mycroft/audio.log
-    sudo touch /var/mycroft/skill.log
-    sudo touch /var/mycroft/voice.log
-    sudo chmod -R 777 /var/log/mycroft/setup.log
-    sudo chmod -R 777 /var/log/mycroft/bus.log
-    sudo chmod -R 777 /var/log/mycroft/audio.log
-    sudo chmod -R 777 /var/log/mycroft/skill.log
-    sudo chmod -R 777 /var/log/mycroft/voice.log
+    git clone https://github.com/DoboAI/dobo-core.git
+    cd /srv/dobo/dobo-core/ || exit
 
     echo "Has changed"
     python --version
 
     # Running installation scripts
-    sudo ./dev_setup.sh --allow-root
+    ./dev_setup.sh
 
     # Running its virtual env
     echo "Changing virtual env..."
     . venv-activate.sh
 
-    echo "Running Mycroft-Core..."
+    echo "Running Dobo-Core..."
     ./start-mycroft.sh all
-    echo "Mycroft-Core Has been installed & now is running!"
+
+    while true; do
+        read -p "Is it running correctly? (yes/no): say hey dobo to test it." answer
+        case $answer in
+            [Yy]* )
+                echo "Dobo-Core Has been installed & now is running!"
+                break;;
+            [Nn]* )
+                echo "Running Canceled! run ./dev_setup.sh manually. "
+                exit;;
+            * ) echo "Only select Yes or No please!";;
+        esac
+    done
 else
-    echo "Mycroft-Core folder is exist, so Mycroft-Core installation skipped!"
-    cd /opt/mycroft-core/ || exit
+    echo "Dobo-Core folder is exist, so Dobo-Core installation skipped!"
+    cd /srv/dobo/dobo-core/ || exit
 
     # Running its virtual env
     echo "Changing virtual env..."
     . venv-activate.sh
 
-    echo "Running Mycroft-Core..."
+    echo "Running Dobo-Core..."
     ./start-mycroft.sh all restart
-    echo "Mycroft-Core is running now!!"
+    while true; do
+        read -p "Is it running correctly? (yes/no): say hey dobo to test it." answer
+        case $answer in
+            [Yy]* )
+                echo "Dobo-Core is running now!!"
+                break;;
+            [Nn]* )
+                echo "Running Canceled! run ./dev_setup.sh manually. "
+                exit;;
+            * ) echo "Only select Yes or No please!";;
+        esac
+    done
 fi
 deactivate
 
 # Back to the previous directory
-cd /opt/ || exit
+cd /srv/dobo || exit
 
 # Changing Python version
 pyenv global 3.11.0
@@ -93,21 +109,18 @@ python3.11 -m pip install --upgrade pip
 # Installation of  Home Asistant
 echo "Installing Home Assistant Core..."
 python -m venv home_assistant
-source home_assistant/bin/activate
+source /srv/dobo/home_assistant/bin/activate
 python -m pip install wheel
 pip install mutagen
 
 pip install homeassistant==2023.11.0
 
 if [ ! -d "configs/www" ]; then
-  mkdir /opt/configs/
-  mkdir /opt/configs/www
-  sudo chmod -R 777 /opt/configs
-  sudo chmod -R 777 /opt/configs/www
+  mkdir /srv/dobo/configs/
+  mkdir /srv/dobo/configs/www
 fi
 if [ ! -d "media" ]; then
-  mkdir /opt/media
-  sudo chmod -R 777 /opt/media
+  mkdir /srv/dobo/media
 fi
 
 echo "Running Home Assistant Assistant on: http://localhost:8123 or http://homeassistant:8123/"
