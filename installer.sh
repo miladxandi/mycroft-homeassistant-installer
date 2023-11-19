@@ -49,6 +49,8 @@ if [ ! -d "dobo" ]; then
       echo -e "Now the current user is dobo!"
     fi
 
+    cd /srv/ || exit
+
     sudo mkdir /srv/dobo
     cd /srv/dobo || exit
     sudo chown dobo:dobo /srv/dobo
