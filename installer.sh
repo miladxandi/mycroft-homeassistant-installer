@@ -14,12 +14,10 @@ if ! id "dobo" &>/dev/null; then
   cd /srv/dobo || exit
   echo -e "We created a new user:\nUsername:dobo\nPassword:1234\nPlease rerun ths script!"
 else
+  sudo -u dobo -H -s
+  echo -e "Now the current user is dobo!"
   su - dobo -c '1234'
 fi
-
-sudo -u dobo -H -s
-echo -e "Now the current user is dobo!"
-
 
 
 # Pyenv installation
