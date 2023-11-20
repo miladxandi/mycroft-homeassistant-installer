@@ -10,10 +10,11 @@ if ! id "dobo" &>/dev/null; then
   sudo mkdir /srv/dobo
   pass="1234"
   encrypted_password=$(echo -n "$pass" | openssl passwd -stdin -6)
-  sudo useradd -m -d /srv/dobo -p "$encrypted_password" dobo && chown dobo:dobo /srv/dobo
+  sudo useradd -m -d /srv/dobo -p "$encrypted_password" dobo
   cd /srv/dobo || exit
   echo -e "We created a new user:\nUsername:dobo\nPassword:1234\nPlease rerun ths script!"
 else
+  chown dobo:dobo /srv/dobo
   sudo -u dobo -H -s
   echo -e "Now the current user is dobo!"
   su - dobo -c '1234'
