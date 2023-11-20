@@ -8,7 +8,7 @@ if ! id "dobo" &>/dev/null; then
 
   sudo mkdir /srv/dobo
   sudo mkdir /var/log/mycroft
-
+  sudo ufw allow 8123
   pass="1234"
   encrypted_password=$(echo -n "$pass" | openssl passwd -stdin -6)
   sudo useradd -rm -p "$encrypted_password" dobo
