@@ -14,7 +14,7 @@ if ! id "dobo" &>/dev/null; then
   cd /srv/dobo || exit
   echo -e "We created a new user:\nUsername:dobo\nPassword:1234\nPlease rerun ths script!"
 else
-  chown dobo:dobo /srv/dobo
+  sudo chown dobo:dobo /srv/dobo
   sudo -u dobo -H -s
   echo -e "Now the current user is dobo!"
   su - dobo -c '1234'
