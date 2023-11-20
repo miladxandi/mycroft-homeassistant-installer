@@ -31,8 +31,10 @@ else
             break;;
     esac
   done
-  sudo chown dobo:dobo /srv/dobo
-  sudo -u dobo -H -s
+  if [ ! -d "dobo-core" ]; then
+    sudo chown dobo:dobo /srv/dobo
+    sudo -u dobo -H -s
+  fi
   echo -e "Now the current user is dobo!"
   su - dobo -c '1234'
 fi
