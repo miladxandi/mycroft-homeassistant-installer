@@ -42,7 +42,7 @@ if ! id "dobo" &>/dev/null; then
   encrypted_password=$(echo -n "$pass" | openssl passwd -stdin -6)
   sudo useradd -rm -p "$encrypted_password" dobo
   cd /srv/dobo || exit
-  echo -e "We created a new user:\nUsername:dobo\nPassword:1234\nPlease rerun ths script!"
+  echo -e "We created a new user:\nUsername:dobo\nPassword:1234\nPlease rerun the script from this folder:\n$current_directory"
   sudo chown dobo:dobo /srv/dobo
   sudo chown dobo:dobo /var/log/mycroft
   sudo -u dobo -H -s
