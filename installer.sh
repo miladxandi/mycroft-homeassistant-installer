@@ -4,6 +4,20 @@
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y curl git build-essential libssl-dev libffi-dev libbz2-dev libreadline-dev libsqlite3-dev bluez libjpeg-dev liblzma-dev python3-tk zlib1g-dev autoconf libopenjp2-7 libtiff5 libturbojpeg0-dev tzdata ffmpeg liblapack3 liblapack-dev python-tk python3-tk tk-dev
 
+
+# Change user
+if ! id "dobo" &>/dev/null; then
+  pass="1234"
+  encrypted_password=$(echo -n "$pass" | openssl passwd -stdin -6)
+  sudo useradd -rm -p "$encrypted_password" dobo
+  echo -e "We created a new user:\nUsername:dobo\nPassword:1234"
+else
+  su - dobo -c '1234'
+fi
+
+sudo -u dobo -H -s
+echo -e "Now the current user is dobo!"
+
 # Pyenv installation
 curl https://pyenv.run | bash
 
@@ -41,15 +55,7 @@ cd /srv/ || exit
 
 if [ ! -d "dobo" ]; then
 
-    if ! id "dobo" &>/dev/null; then
-      pass="1234"
-      encrypted_password=$(echo -n "$pass" | openssl passwd -stdin -6)
-      sudo useradd -rm -p "$encrypted_password" dobo
-      echo -e "We created a new user:\nUsername:dobo\nPassword:1234"
-    fi
 
-    sudo -u dobo -H -s
-    echo -e "Now the current user is dobo!"
 
     cd /srv/ || exit
 
