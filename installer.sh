@@ -18,7 +18,10 @@ while true; do
     else
       homeassistant="✅ 3.Home-Assistant"
     fi
-    read -p "What do you want to install?\n $core \n $dobo \n $homeassistant" answer
+    read -p "What do you want to install?
+    $core
+    $dobo
+    $homeassistant" answer
     case $answer in
         1 )
             echo "Installing core libraries ..."
