@@ -10,13 +10,18 @@ if ! id "dobo" &>/dev/null; then
   pass="1234"
   encrypted_password=$(echo -n "$pass" | openssl passwd -stdin -6)
   sudo useradd -rm -p "$encrypted_password" dobo
-  echo -e "We created a new user:\nUsername:dobo\nPassword:1234"
+  echo -e "We created a new user:\nUsername:dobo\nPassword:1234\nPlease rerun ths script!"
 else
+  sudo mkdir /srv/dobo
+  cd /srv/dobo || exit
+  sudo chown dobo:dobo /srv/dobo
   su - dobo -c '1234'
 fi
 
 sudo -u dobo -H -s
 echo -e "Now the current user is dobo!"
+
+
 
 # Pyenv installation
 curl https://pyenv.run | bash
@@ -50,18 +55,10 @@ python --version
 pip --version
 
 # Go to the srv directory
-cd /srv/ || exit
+cd /srv/dobo || exit
 
 
-if [ ! -d "dobo" ]; then
-
-
-
-    cd /srv/ || exit
-
-    sudo mkdir /srv/dobo
-    cd /srv/dobo || exit
-    sudo chown dobo:dobo /srv/dobo
+if [ ! -d "dobo-core" ]; then
 
     # Cloning MyCroft-Core form github
     git clone https://github.com/DoboAI/dobo-core.git
@@ -92,7 +89,9 @@ if [ ! -d "dobo" ]; then
             * ) echo "Only select Yes or No please!";;
         esac
     done
+
 else
+
     echo "Dobo-Core folder is exist, so Dobo-Core installation skipped!"
     cd /srv/dobo/dobo-core/ || exit
 
@@ -114,7 +113,9 @@ else
             * ) echo "Only select Yes or No please!";;
         esac
     done
+
 fi
+
 deactivate
 
 # Back to the previous directory
