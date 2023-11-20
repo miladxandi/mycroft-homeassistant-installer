@@ -26,6 +26,7 @@ pyenv global 3.11.0
 pyenv global 3.11.0
 python3.11 -m pip install --upgrade pip
 pip install requests
+pip install mutagen
 
 pyenv global 3.10.0
 python3.10 -m pip install --upgrade pip
@@ -45,7 +46,6 @@ if [ ! -d "dobo" ]; then
       encrypted_password=$(echo -n "$pass" | openssl passwd -stdin -6)
       sudo useradd -rm -p "$encrypted_password" dobo
       echo -e "We created a new user:\nUsername:dobo\nPassword:1234"
-
     fi
 
     sudo -u dobo -H -s
@@ -122,7 +122,6 @@ echo "Installing Home Assistant Core..."
 python -m venv home_assistant
 source /srv/dobo/home_assistant/bin/activate
 python -m pip install wheel
-pip install mutagen
 
 pip install homeassistant==2023.11.0
 
