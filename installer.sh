@@ -37,3 +37,4 @@ while true; do
             break;;
     esac
 done
+bash installer.sh
