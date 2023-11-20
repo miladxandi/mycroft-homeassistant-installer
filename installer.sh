@@ -22,7 +22,8 @@ while true; do
     read -p "What do you want to install?
     $core
     $dobo
-    $homeassistant" answer
+    $homeassistant
+    " answer
     case $answer in
         1 )
             echo "Installing core libraries ..."
