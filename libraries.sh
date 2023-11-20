@@ -2,8 +2,8 @@ current_directory=$(pwd)
 
 if ! id "dobo" &>/dev/null; then
   # Installing require updates
-  sudo apt update && sudo apt upgrade -y
-  sudo apt install -y curl git build-essential libssl-dev libffi-dev libbz2-dev libreadline-dev libsqlite3-dev bluez libjpeg-dev liblzma-dev python3-tk zlib1g-dev autoconf libopenjp2-7 libtiff5 libturbojpeg0-dev tzdata ffmpeg liblapack3 liblapack-dev python-tk python3-tk tk-dev
+  #sudo apt update && sudo apt upgrade -y
+  #sudo apt install -y curl git build-essential libssl-dev libffi-dev libbz2-dev libreadline-dev libsqlite3-dev bluez libjpeg-dev liblzma-dev python3-tk zlib1g-dev autoconf libopenjp2-7 libtiff5 libturbojpeg0-dev tzdata ffmpeg liblapack3 liblapack-dev python-tk python3-tk tk-dev
 
   sudo mkdir /srv/dobo
   sudo mkdir /var/log/mycroft
@@ -13,6 +13,12 @@ if ! id "dobo" &>/dev/null; then
   sudo useradd -rm -p "$encrypted_password" dobo
   cd /srv/dobo || exit
   echo -e "We created a new user:\nUsername:dobo\nPassword:1234\nPlease rerun ths script!"
+  sudo chown dobo:dobo /srv/dobo
+  sudo chown dobo:dobo /var/log/mycroft
+  sudo -u dobo -H -s
+  # Change user
+  echo -e "Now the current user is dobo!"
+  su - dobo -c '1234'
   exit;
 else
   while true; do
@@ -32,15 +38,6 @@ else
             break;;
     esac
   done
-  if [ ! -d "dobo-core" ]; then
-    sudo chown dobo:dobo /srv/dobo
-    sudo chown dobo:dobo /var/log/mycroft
-    sudo -u dobo -H -s
-  fi
-
-  # Change user
-  echo -e "Now the current user is dobo!"
-  su - dobo -c '1234'
 fi
 
 
