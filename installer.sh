@@ -7,6 +7,8 @@ if ! id "dobo" &>/dev/null; then
   sudo apt install -y curl git build-essential libssl-dev libffi-dev libbz2-dev libreadline-dev libsqlite3-dev bluez libjpeg-dev liblzma-dev python3-tk zlib1g-dev autoconf libopenjp2-7 libtiff5 libturbojpeg0-dev tzdata ffmpeg liblapack3 liblapack-dev python-tk python3-tk tk-dev
 
   sudo mkdir /srv/dobo
+  sudo mkdir /var/log/mycroft
+
   pass="1234"
   encrypted_password=$(echo -n "$pass" | openssl passwd -stdin -6)
   sudo useradd -rm -p "$encrypted_password" dobo
@@ -33,6 +35,7 @@ else
   done
   if [ ! -d "dobo-core" ]; then
     sudo chown dobo:dobo /srv/dobo
+    sudo chown dobo:dobo /var/log/mycroft
     sudo -u dobo -H -s
   fi
   echo -e "Now the current user is dobo!"
@@ -101,7 +104,15 @@ if [ ! -d "dobo-core" ]; then
                 echo "Dobo-Core Has been installed & now is running!"
                 break;;
             [Nn]* )
-                echo "Running Canceled! run ./dev_setup.sh manually. "
+                # Running installation scripts
+                ./dev_setup.sh
+
+                # Running its virtual env
+                echo "Changing virtual env..."
+                . venv-activate.sh
+
+                echo "Running Dobo-Core..."
+                ./start-mycroft.sh all
                 exit;;
             * ) echo "Only select Yes or No please!";;
         esac
@@ -125,7 +136,15 @@ else
                 echo "Dobo-Core is running now!!"
                 break;;
             [Nn]* )
-                echo "Running Canceled! run ./dev_setup.sh manually. "
+                # Running installation scripts
+                ./dev_setup.sh
+
+                # Running its virtual env
+                echo "Changing virtual env..."
+                . venv-activate.sh
+
+                echo "Running Dobo-Core..."
+                ./start-mycroft.sh all
                 exit;;
             * ) echo "Only select Yes or No please!";;
         esac
