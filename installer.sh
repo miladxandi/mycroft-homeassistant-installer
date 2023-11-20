@@ -1,4 +1,5 @@
 #!/bin/bash
+current_directory=$(pwd)
 while true; do
     core=""
     dobo=""
@@ -40,4 +41,5 @@ while true; do
             break;;
     esac
 done
+cd "$current_directory"
 bash installer.sh
