@@ -12,6 +12,7 @@ if ! id "dobo" &>/dev/null; then
   sudo useradd -rm -p "$encrypted_password" dobo
   cd /srv/dobo || exit
   echo -e "We created a new user:\nUsername:dobo\nPassword:1234\nPlease rerun ths script!"
+  exit;
 else
   while true; do
     read -p "Do you want to install linux libraries again? (yes/no):" answer
