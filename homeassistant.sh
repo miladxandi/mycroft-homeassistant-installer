@@ -20,6 +20,7 @@ echo "Installing Home Assistant Core..."
 python -m venv home_assistant
 source /srv/dobo/home_assistant/bin/activate
 python -m pip install wheel
+python -m pip install requests --upgrade
 
 pip install homeassistant==2023.11.0
 
