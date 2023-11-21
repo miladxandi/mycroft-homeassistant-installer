@@ -23,7 +23,7 @@ while true; do
     $core
     $dobo
     $homeassistant
-    " answer
+    Selected Option: " answer
     case $answer in
         1 )
             echo "Installing core libraries ..."
