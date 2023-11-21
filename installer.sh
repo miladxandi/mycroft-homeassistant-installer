@@ -5,19 +5,19 @@ while true; do
     dobo=""
     homeassistant=""
     if ! id "dobo" &>/dev/null; then
-      core="❌ 1️⃣  Core libraries"
+      core="❌ 1.Core libraries"
     else
-      core="✅ 1️  Core libraries"
+      core="✅ 1.Core libraries"
     fi
     if [ ! -d "/srv/dobo/dobo-core" ]; then
-      dobo="❌ 2️⃣  Dobo-Core"
+      dobo="❌ 2.Dobo-Core"
     else
-      dobo="✅ 2️  Dobo-Core"
+      dobo="✅ 2.Dobo-Core"
     fi
     if [ ! -d "/srv/dobo/home_assistant" ]; then
-      homeassistant="❌ 3️⃣  Home-Assistant"
+      homeassistant="❌ 3.Home-Assistant"
     else
-      homeassistant="✅ 3️  Home-Assistant"
+      homeassistant="✅ 3.Home-Assistant"
     fi
     read -p "What do you want to install?
     $core
