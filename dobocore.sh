@@ -1,5 +1,8 @@
 current_directory=$(pwd)
 
+
+su - dobo -c '1234'
+
 # Go to the srv directory
 cd /srv/dobo || exit
 
