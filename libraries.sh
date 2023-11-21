@@ -6,6 +6,7 @@ if ! id "dobo" &>/dev/null; then
   sudo apt install -y curl git build-essential libssl-dev libffi-dev libbz2-dev libreadline-dev libsqlite3-dev bluez libjpeg-dev liblzma-dev python3-tk zlib1g-dev autoconf libopenjp2-7 libtiff5 libturbojpeg0-dev tzdata ffmpeg liblapack3 liblapack-dev python-tk python3-tk tk-dev
 
   sudo mkdir /srv/dobo
+  sudo mkdir /opt/mycroft
   sudo mkdir /var/log/mycroft
   sudo ufw allow 8123
   pass="1234"
@@ -14,6 +15,7 @@ if ! id "dobo" &>/dev/null; then
   cd /srv/dobo || exit
   echo -e "We created a new user:\nUsername:dobo\nPassword:1234\nPlease rerun the script from this folder:\n$current_directory"
   sudo chown dobo:dobo /srv/dobo
+  sudo chown dobo:dobo /opt/mycroft
   sudo chown dobo:dobo /var/log/mycroft
   sudo -u dobo -H -s
   # Change user
