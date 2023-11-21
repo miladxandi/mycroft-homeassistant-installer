@@ -4,36 +4,6 @@ if ! id "dobo" &>/dev/null; then
   # Installing require updates
   sudo apt update && sudo apt upgrade -y
   sudo apt install -y curl git build-essential libssl-dev libffi-dev libbz2-dev libreadline-dev libsqlite3-dev bluez libjpeg-dev liblzma-dev python3-tk zlib1g-dev autoconf libopenjp2-7 libtiff5 libturbojpeg0-dev tzdata ffmpeg liblapack3 liblapack-dev python-tk python3-tk tk-dev
-  # Pyenv installation
-  curl https://pyenv.run | bash
-
-  # Adding Pyenv to the file path of profile to run in any session
-  echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-  echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
-  echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-
-  # Installing Python 3.11 & 3.10 with Pyenv
-  pyenv install 3.11.0
-  pyenv install 3.10.0
-
-  # Setting default version of python
-  pyenv global 3.11.0
-
-  # Installing require Python libraries
-  pyenv global 3.11.0
-  python3.11 -m pip install --upgrade pip
-  pip install requests
-  pip install mutagen
-
-  pyenv global 3.10.0
-  python3.10 -m pip install --upgrade pip
-  pip install requests
-  # Check versions
-  python --version
-  pip --version
 
   sudo mkdir /srv/dobo
   sudo mkdir /var/log/mycroft
