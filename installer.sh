@@ -19,10 +19,14 @@ while true; do
     else
       homeassistant="✅ 3.Home-Assistant"
     fi
+
+    quit="4. Exit"
+
     read -p "What do you want to install?
     $core
     $dobo
     $homeassistant
+    $quit
     Selected Option: " answer
     case $answer in
         1 )
@@ -34,6 +38,10 @@ while true; do
             bash dobocore.sh
             break;;
         3 )
+            echo "Installing Home-Assistant ..."
+            bash homeassistant.sh
+            break;;
+        4 )
             echo "Installing Home-Assistant ..."
             bash homeassistant.sh
             break;;
