@@ -26,9 +26,12 @@ pyenv global 3.11.0
 python3.11 -m pip install --upgrade pip
 pip install requests
 pip install mutagen
+pip install pyxdg
+
 pyenv global 3.10.0
 python3.10 -m pip install --upgrade pip
 pip install requests
+pip install pyxdg
 
 # Check versions
 python --version
