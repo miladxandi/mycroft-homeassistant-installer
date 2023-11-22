@@ -17,6 +17,7 @@ if ! id "dobo" &>/dev/null; then
   sudo chown dobo:dobo /srv/dobo
   sudo chown dobo:dobo /opt/mycroft
   sudo chown dobo:dobo /var/log/mycroft
+  sudo usermod -aG sudo dobo
   sudo -u dobo -H -s
   # Change user
   echo -e "Now the current user is dobo!"
