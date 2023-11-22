@@ -48,7 +48,7 @@ if [ ! -d "dobo-core" ]; then
     python --version
 
     # Running installation scripts
-    ./dev_setup.sh
+    sudo ./dev_setup.sh --allow-root
 
     # Running its virtual env
     echo "Changing virtual env..."
@@ -56,27 +56,6 @@ if [ ! -d "dobo-core" ]; then
 
     echo "Running Dobo-Core..."
     ./start-mycroft.sh all
-
-    while true; do
-        read -p "Is it running correctly? (yes/no): say hey dobo to test it." answer
-        case $answer in
-            [Yy]* )
-                echo "Dobo-Core Has been installed & now is running!"
-                break;;
-            [Nn]* )
-                # Running installation scripts
-                ./dev_setup.sh
-
-                # Running its virtual env
-                echo "Changing virtual env..."
-                . venv-activate.sh
-
-                echo "Running Dobo-Core..."
-                ./start-mycroft.sh all
-                exit;;
-            * ) echo "Only select Yes or No please!";;
-        esac
-    done
 
 else
 
@@ -87,8 +66,6 @@ else
     echo "Changing virtual env..."
     . venv-activate.sh
 
-    echo "Running Dobo-Core..."
-    ./start-mycroft.sh all restart
     while true; do
         read -p "Is it running correctly? (yes/no): say hey dobo to test it." answer
         case $answer in
@@ -97,7 +74,7 @@ else
                 break;;
             [Nn]* )
                 # Running installation scripts
-                ./dev_setup.sh
+                sudo ./dev_setup.sh --allow-root
 
                 # Running its virtual env
                 echo "Changing virtual env..."
@@ -110,6 +87,8 @@ else
         esac
     done
 
+    echo "Running Dobo-Core..."
+    ./start-mycroft.sh all restart
 fi
 
 deactivate
