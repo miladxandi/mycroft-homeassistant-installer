@@ -41,13 +41,9 @@ while true; do
             echo "Installing Home-Assistant ..."
             bash homeassistant.sh
             break;;
-        4 )
-            echo "Installing Home-Assistant ..."
-            bash homeassistant.sh
-            break;;
         * )
             echo "Installation skipped!"
-            break;;
+            exit;;
     esac
 done
 cd "$current_directory"
