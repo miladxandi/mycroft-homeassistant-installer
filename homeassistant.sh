@@ -32,6 +32,6 @@ if [ ! -d "media" ]; then
   mkdir /srv/dobo/media
 fi
 
-echo "Running Home Assistant Assistant on: http://localhost:8123 or http://homeassistant:8123/"
 cd "$current_directory"
 echo "Now run this: source /srv/dobo/home_assistant/bin/activate && hass"
+echo "It will run Home-Assistant on: http://localhost:8123 or http://homeassistant:8123/"
