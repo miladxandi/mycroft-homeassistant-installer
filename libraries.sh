@@ -3,7 +3,7 @@ current_directory=$(pwd)
 if ! id "dobo" &>/dev/null; then
   # Installing require updates
   sudo apt update && sudo apt upgrade -y
-  sudo apt install -y curl git build-essential libssl-dev libffi-dev libbz2-dev libreadline-dev libsqlite3-dev bluez libjpeg-dev liblzma-dev python3-tk zlib1g-dev autoconf libopenjp2-7 libtiff5 libturbojpeg0-dev tzdata ffmpeg liblapack3 liblapack-dev python-tk python3-tk tk-dev
+  sudo apt install -y curl git build-essential libssl-dev libffi-dev libbz2-dev libreadline-dev libsqlite3-dev bluez libjpeg-dev liblzma-dev python3-tk zlib1g-dev autoconf libopenjp2-7 libtiff5 libturbojpeg0-dev tzdata ffmpeg liblapack3 liblapack-dev python-tk python3-tk tk-dev libespeak-ng1 libatomic1 libgomp1 libatlas-base-dev
 
   sudo mkdir /srv/dobo
   sudo mkdir /opt/mycroft
