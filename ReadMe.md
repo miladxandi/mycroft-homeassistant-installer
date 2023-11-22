@@ -9,8 +9,3 @@ Ok! now you need to run this command:
 ```
 bash installer.sh
 ```
-
-If you ran this command before, use another one to run it whenever you need:
-```
-bash runner.sh
-```
