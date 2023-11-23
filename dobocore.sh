@@ -27,11 +27,13 @@ python3.11 -m pip install --upgrade pip
 pip install requests
 pip install mutagen
 pip install pyxdg
+pip install Cython
 
 pyenv global 3.10.0
 python3.10 -m pip install --upgrade pip
 pip install requests
 pip install pyxdg
+pip install Cython
 
 # Check versions
 python --version
@@ -50,12 +52,13 @@ if [ ! -d "dobo-core" ]; then
     echo "Has changed"
     python --version
 
-    # Running installation scripts
-    sudo ./dev_setup.sh --allow-root
-
     # Running its virtual env
     echo "Changing virtual env..."
     . venv-activate.sh
+    pip install Cython
+
+    # Running installation scripts
+    sudo ./dev_setup.sh --allow-root
 
     echo "Running Dobo-Core..."
     ./start-mycroft.sh all
@@ -68,6 +71,7 @@ else
     # Running its virtual env
     echo "Changing virtual env..."
     . venv-activate.sh
+    pip install Cython
 
     while true; do
         read -p "Is it running correctly? (yes/no): say hey dobo to test it." answer
@@ -78,10 +82,6 @@ else
             [Nn]* )
                 # Running installation scripts
                 sudo ./dev_setup.sh --allow-root
-
-                # Running its virtual env
-                echo "Changing virtual env..."
-                . venv-activate.sh
 
                 echo "Running Dobo-Core..."
                 ./start-mycroft.sh all
