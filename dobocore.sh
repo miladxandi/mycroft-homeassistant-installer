@@ -55,7 +55,9 @@ if [ ! -d "dobo-core" ]; then
     # Running its virtual env
     echo "Changing virtual env..."
     . venv-activate.sh
-    pip install Cython
+    pip install -r requirements.txt
+    sudo bash bin/mycroft-pip install -r requirements.txt
+
 
     # Running installation scripts
     sudo ./dev_setup.sh --allow-root
@@ -72,7 +74,8 @@ else
     # Running its virtual env
     echo "Changing virtual env..."
     . venv-activate.sh
-    pip install Cython
+    pip install -r requirements.txt
+    sudo bash bin/mycroft-pip install -r requirements.txt
 
     while true; do
         read -p "Is it running correctly? (yes/no): say hey dobo to test it." answer
