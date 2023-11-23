@@ -59,6 +59,7 @@ if [ ! -d "dobo-core" ]; then
 
     # Running installation scripts
     sudo ./dev_setup.sh --allow-root
+    sudo ./dev_setup.sh --allow-root
 
     echo "Running Dobo-Core..."
     ./start-mycroft.sh all
@@ -81,6 +82,7 @@ else
                 break;;
             [Nn]* )
                 # Running installation scripts
+                sudo ./dev_setup.sh --allow-root
                 sudo ./dev_setup.sh --allow-root
 
                 echo "Running Dobo-Core..."
